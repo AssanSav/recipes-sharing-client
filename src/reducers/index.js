@@ -7,7 +7,9 @@ import {
 } from "../actions/types"
 import { combineReducers } from 'redux'
 
-export function UsersReducer(state = { user: {}, isLoggedIn: null }, {payload}) {
+export function usersReducer(state = { user: {}, isLoggedIn: null }, action) {
+    const { payload } = action
+    
     switch (action.type) {
         case SIGNUP:
             return {
@@ -16,22 +18,22 @@ export function UsersReducer(state = { user: {}, isLoggedIn: null }, {payload}) 
             }
         case LOGIN:
             return {
-                isLogged_in: payload.logged_in,
+                isLoggedIn: payload.logged_in,
                 user: payload.user
             }
         case LOGGED_IN:
             return {
-                isLogged_in: payload.logged_in,
+                isLoggedIn: payload.logged_in,
                 user: payload.user
             }
         case LOGGED_OUT:
             return {
-                isLogged_in: payload.logged_in,
+                isLoggedIn: payload.logged_in,
                 user: {}
             }
         case LOGOUT:
             return {
-                isLogged_in: false,
+                isLoggedIn: false,
                 users: {}
             }
         default: 
@@ -40,5 +42,5 @@ export function UsersReducer(state = { user: {}, isLoggedIn: null }, {payload}) 
 }
 
 export const rootReducer = combineReducers({
-    UsersReducer,
+    usersReducer
 })

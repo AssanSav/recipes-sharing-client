@@ -1,7 +1,7 @@
 import { LOGGED_IN } from "./types"
 import { LOGGED_OUT } from "./types"
 
-export function fetchSessionStatus() {
+export function sessionStatus() {
     return dispatch => {
         fetch("http://localhost:3001/login/status", {
             headers: {

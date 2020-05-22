@@ -1,14 +1,15 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchSessionStatus } from "../actions/fetchSessionStatus"
+import { sessionStatus } from "../actions/sessionStatus"
 
 class UserSessionStatus extends Component {
 
     componentDidMount() {
-        this.props.fetchSessionStatus()
+        this.props.sessionStatus()
     }
 
     render() {
+        const {isLoggedIn, user} = this.props
         if (isLoggedIn) {   
             return (
                 <div>
@@ -18,11 +19,12 @@ class UserSessionStatus extends Component {
     }
 }
 
-const mapStateToProps = ({ usersReducer}) => {
+const mapStateToProps = ({ usersReducer }) => {
+    debugger
     return {
-        isLoggedIn: usersReducer.isLogged_in,
-        user: userReducer.user
+        isLoggedIn: usersReducer.isLoggedIn,
+        user: usersReducer.user
     }
 }
 
-export default connect(mapStateToProps, { fetchSessionStatus })(UserSessionStatus)
+export default connect(mapStateToProps, { sessionStatus })(UserSessionStatus)

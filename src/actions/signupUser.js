@@ -1,6 +1,6 @@
 import { SIGNUP } from "./types"
 
-export function fetchToSignupUser(user) {
+export function signupUser(user) {
     return (dispatch) => {
         fetch("http://localhost:3001/users", {
             method: "POST",

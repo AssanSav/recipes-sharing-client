@@ -1,7 +1,7 @@
 import { LOGOUT } from "./types"
 
 
-export function fetchToLogout(userId) {
+export function logoutUser(userId) {
     return (dispatch) => {
         fetch(`http://localhost:3001/logout/${userId}`, {
             method: "DELETE",
