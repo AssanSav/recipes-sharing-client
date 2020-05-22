@@ -1,16 +1,20 @@
 import {
-    LOGGED_IN,
     LOGGED_OUT,
+    LOGGED_IN,
     SIGNUP,
     LOGIN,
     LOGOUT
 } from "../actions/types"
 import { combineReducers } from 'redux'
+import { FETCH_RECIPES} from "../actions/types"
 
-export function usersReducer(state = { user: {}, isLoggedIn: null }, action) {
-    const { payload } = action
-    
-    switch (action.type) {
+export function users(state = {
+    user: {},
+    isLoggedIn: null
+}, action) {
+
+    const { payload, type } = action
+    switch (type) {
         case SIGNUP:
             return {
                 isLoggedIn: true,
@@ -41,6 +45,24 @@ export function usersReducer(state = { user: {}, isLoggedIn: null }, action) {
     }
 }
 
+
+export function recipes(state = {
+    recipesId: [],
+    recipesObjects: []
+}, action) {
+
+    const {type} = action
+    switch ((type)) {
+        case FETCH_RECIPES:
+            return {
+
+            }
+        default:
+            return state
+            
+    }
+}
+
 export const rootReducer = combineReducers({
-    usersReducer
+    users
 })
