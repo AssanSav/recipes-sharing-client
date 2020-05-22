@@ -7,8 +7,9 @@ import { connect } from "react-redux"
 function NavBar(props) {
 
     const handleClick = () => {
-        const { logoutUser, isLogged_in, user } = props
-        if (isLogged_in) {
+        const { logoutUser, isLoggedIn, user } = props
+        debugger
+        if (isLoggedIn) {
             logoutUser(user.id)
         }
     }

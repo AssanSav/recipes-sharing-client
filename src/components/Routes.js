@@ -9,8 +9,8 @@ const Routes = () => {
 
     return (
         <Router>
-            <div>
             <NavBar />
+            <div>
                 <Switch>
                     <Route exact path="/login" render={(routerProps) =>
                         <Login history={routerProps.history}

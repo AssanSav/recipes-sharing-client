@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { sessionStatus } from "../actions/sessionStatus"
-import NavBar from "../components/NavBar"
 
 class UserSessionStatus extends Component {
 
