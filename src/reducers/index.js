@@ -10,12 +10,13 @@ import { FETCH_RECIPES} from "../actions/types"
 
 export function users(state = {
     user: {},
-    isLoggedIn: null
+    isLoggedIn: false
 }, action) {
 
     const { payload, type } = action
     switch (type) {
         case SIGNUP:
+            debugger
             return {
                 isLoggedIn: true,
                 user: payload
@@ -23,16 +24,16 @@ export function users(state = {
         case LOGIN:
             return {
                 isLoggedIn: payload.logged_in,
-                user: payload.user
+                user: payload.user.data
             }
         case LOGGED_IN:
             return {
                 isLoggedIn: payload.logged_in,
-                user: payload.user
+                user: payload.user.data
             }
         case LOGGED_OUT:
             return {
-                isLoggedIn: payload.logged_in,
+                isLoggedIn: false,
                 user: {}
             }
         case LOGOUT:
@@ -47,15 +48,18 @@ export function users(state = {
 
 
 export function recipes(state = {
-    recipesId: [],
+    recipesIds: [],
     recipesObjects: []
 }, action) {
-
-    const {type} = action
+    const { type, payload } = action
+    
     switch ((type)) {
         case FETCH_RECIPES:
             return {
-
+                recipesIds: payload.map(recipe => recipe.id),
+                recipes: payload.reduce((idM, recipe) => {
+                    idM[recipe.id] = recipe
+                }, {})
             }
         default:
             return state
