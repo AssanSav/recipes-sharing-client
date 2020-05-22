@@ -2,7 +2,7 @@ import { SIGNUP } from "./types"
 
 export function signupUser(user) {
     return (dispatch) => {
-        fetch("http://localhost:3001/users", {
+        fetch("http://localhost:3001/api/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

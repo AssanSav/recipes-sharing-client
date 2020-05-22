@@ -3,7 +3,7 @@ import { LOGGED_OUT } from "./types"
 
 export function sessionStatus() {
     return dispatch => {
-        fetch("http://localhost:3001/login/status", {
+        fetch("http://localhost:3001/api/login/status", {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
