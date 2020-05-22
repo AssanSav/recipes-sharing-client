@@ -22,10 +22,11 @@ class UserSessionStatus extends Component {
     }
 }
 
-const mapStateToProps = ({ usersReducer }) => {
+const mapStateToProps = ({ users }) => {
+    const {isLoggedIn, user} = users
     return {
-        isLoggedIn: usersReducer.isLoggedIn,
-        user: usersReducer.user
+        isLoggedIn: isLoggedIn,
+        user: user
     }
 }
 
