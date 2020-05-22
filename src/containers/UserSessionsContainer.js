@@ -9,7 +9,7 @@ class UserSessionStatus extends Component {
     }
 
     render() {
-        if (isLogged_in) {   
+        if (isLoggedIn) {   
             return (
                 <div>
                 </div>
@@ -20,7 +20,7 @@ class UserSessionStatus extends Component {
 
 const mapStateToProps = ({ usersReducer}) => {
     return {
-        isLogged_in: usersReducer.isLogged_in,
+        isLoggedIn: usersReducer.isLogged_in,
         user: userReducer.user
     }
 }
