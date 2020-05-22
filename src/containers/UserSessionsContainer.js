@@ -25,6 +25,7 @@ class UserSessionStatus extends Component {
 }
 
 const mapStateToProps = ({ usersReducer }) => {
+    debugger
     return {
         isLoggedIn: usersReducer.isLoggedIn,
         user: usersReducer.user
