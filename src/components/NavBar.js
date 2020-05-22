@@ -1,5 +1,5 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { logoutUser } from "../actions/logoutUser"
 import { connect } from "react-redux"
 
@@ -15,17 +15,23 @@ function NavBar(props) {
 
     return (
         <div className="nav_bar">
-            <NavLink to="/recipes">HomePage</NavLink>
+            <Link to="/recipes">HomePage</Link>
             <br/>
-            <NavLink to="/login">Log In</NavLink>
+            <Link to="/login">Log In</Link>
             <br />
-            <NavLink to="/signup">Sign Up</NavLink>
+            <Link to="/signup">Sign Up</Link>
             <br />
-            {props.isLoggedIn ? <NavLink to="/login" onClick={handleClick}>Logout</NavLink> : null}
+            {props.isLoggedIn ? <Link to="/login" onClick={handleClick}>Logout</Link> : null}
             <br /> 
         </div>
     )
 }
 
+const mapStateToProps = ({ usersReducer }) => {
+    return {
+        isLoggedIn: usersReducer.isLoggedIn,
+        user: usersReducer.user
+    }
+}
 
-export default connect(null, { logoutUser })(NavBar)
+export default connect(mapStateToProps, { logoutUser })(NavBar)

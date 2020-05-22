@@ -14,7 +14,6 @@ class UserSessionStatus extends Component {
         if (isLoggedIn) {   
             return (
                 <div>
-                    <NavBar isLoggedIn={isLoggedIn} user={user} />
                 </div>
             )
         }
@@ -25,7 +24,6 @@ class UserSessionStatus extends Component {
 }
 
 const mapStateToProps = ({ usersReducer }) => {
-    debugger
     return {
         isLoggedIn: usersReducer.isLoggedIn,
         user: usersReducer.user

@@ -6,8 +6,8 @@ import Routes from './components/Routes';
 function App() {
   return (
     <div className="App">
-      <UserSessionsContainer />
       <Routes />
+      <UserSessionsContainer />
     </div>
   );
 }
