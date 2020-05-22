@@ -2,7 +2,7 @@ import { LOGIN } from "./types"
 
 export function loginUser(user) {
     return dispatch => {
-        fetch("http://localhost:3001/api/login", {
+        return fetch("http://localhost:3001/api/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -12,6 +12,9 @@ export function loginUser(user) {
             body: JSON.stringify(user)
         })
             .then(resp => resp.json())
-            .then(data => dispatch({ type: LOGIN, payload: data }))
+            .then(({user}) => {
+                dispatch({ type: LOGIN, payload: user.data })
+            })
+    
     }
 }

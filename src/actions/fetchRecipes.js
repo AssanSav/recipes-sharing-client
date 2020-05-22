@@ -3,9 +3,10 @@ import { FETCH_RECIPES } from "./types"
 
 export function fetchRecipes() {
     return (dispatch) => {
-        fetch("http://localhost:3001/recipes")
+        return fetch("http://localhost:3001/api/recipes")
             .then(resp => resp.json())
-            .then(data => dispatch({ type: FETCH_RECIPES, payload: data.recipes })
-            )
+            .then(({recipes}) => {
+                dispatch({ type: FETCH_RECIPES, payload: recipes.data })
+            })
     }
 }

@@ -11,6 +11,8 @@ export function sessionStatus() {
             credentials: "include"
         })
             .then(resp => resp.json())
-            .then(data => data.logged_in ? dispatch({ type: LOGGED_IN, payload: data }) : dispatch({ type: LOGGED_OUT, payload: data }))
+            .then(data => {
+                data.logged_in ? dispatch({ type: LOGGED_IN, payload: data }) : dispatch({ type: LOGGED_OUT, payload: data })
+            })
     }
 }

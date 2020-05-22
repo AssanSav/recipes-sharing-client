@@ -8,7 +8,6 @@ function NavBar(props) {
 
     const handleClick = () => {
         const { logoutUser, isLoggedIn, user } = props
-        debugger
         if (isLoggedIn) {
             logoutUser(user.id)
         }
@@ -22,7 +21,7 @@ function NavBar(props) {
             <br />
             <Link to="/signup">Sign Up</Link>
             <br />
-            {props.isLoggedIn ? <Link to="/login" onClick={handleClick}>Logout</Link> : null}
+            {props.isLoggedIn ? <Link to="/login" onClick={(e) => handleClick(e)}>Logout</Link> : null}
             <br /> 
         </div>
     )

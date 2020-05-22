@@ -32,7 +32,7 @@ class Login extends Component {
             password: '',
             errors: ''
         })
-        // this.props.history.push("/recipes")
+        this.props.history.push("/recipes")
     }
 
 
