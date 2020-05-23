@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { fetchRecipeShow } from "../actions/fetchRecipeShow"
-// import { fetchToAddRecipeIngredientsInput } from "../actions/fetchToAddRecipeIngredientsInput"
+import { addIngredient } from "../actions/addIngredient"
 
 
 
@@ -32,10 +32,7 @@ class RecipeShow extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        // this.props.fetchToAddRecipeIngredientsInput(this.state)
-            .then(resp => {
-                debugger
-            })
+        this.props.addIngredient(this.state)
         this.setState({
             ingredient_name: "",
             amount: "",
@@ -56,7 +53,7 @@ class RecipeShow extends Component {
                 return (
                     <div className="render-show">
                         <span>
-                            {/* <img src={image} alt={image} /> */}
+                            <img src={image} alt={image} />
                             <h3>
                                 Name: {name}
                             </h3>
@@ -74,27 +71,29 @@ class RecipeShow extends Component {
                             </footer>
                         </span>
 
-                        <form onSubmit={(e) => this.handleSubmit(e)}>
-                            <p>
-                                <input
-                                    placeholder="Ingredient Name"
-                                    type="text"
-                                    name="ingredient_name"
-                                    value={ingredient_name}
-                                    onChange={this.handleChange}
-                                />
-                            </p>
-                            <p>
-                                <input
-                                    placeholder="Amount"
-                                    type="text"
-                                    name="amount"
-                                    value={amount}
-                                    onChange={this.handleChange}
-                                />
-                            </p>
-                            <input type="submit" value="Add Ingredients" ></input>
-                        </form>
+                        {this.props.isLoggedIn && this.props.user.id === this.props.recipe.user_id ?
+                            <form onSubmit={(e) => this.handleSubmit(e)}>
+                                <p>
+                                    <input
+                                        placeholder="Ingredient Name"
+                                        type="text"
+                                        name="ingredient_name"
+                                        value={ingredient_name}
+                                        onChange={this.handleChange}
+                                    />
+                                </p>
+                                <p>
+                                    <input
+                                        placeholder="Amount"
+                                        type="text"
+                                        name="amount"
+                                        value={amount}
+                                        onChange={this.handleChange}
+                                    />
+                                </p>
+                                <input type="submit" value="Add Ingredients" ></input>
+                            </form>
+                        : null}
                     </div>
                 )
             }
@@ -104,12 +103,15 @@ class RecipeShow extends Component {
     }
 }
 
-const mapStateToProps = ({ recipesReducer }) => {
+const mapStateToProps = ({ recipesReducer, usersReducer }) => {
     const { recipe, recipeIngredients } = recipesReducer
+    const { user, isLoggedIn} = usersReducer
     return {
+        ingredients: recipeIngredients,
         recipe: recipe,
-        ingredients: recipeIngredients
+        isLoggedIn: isLoggedIn,
+        user: user
     }
 }
 
-export default connect(mapStateToProps, { fetchRecipeShow })(RecipeShow)
+export default connect(mapStateToProps, { fetchRecipeShow, addIngredient })(RecipeShow)
