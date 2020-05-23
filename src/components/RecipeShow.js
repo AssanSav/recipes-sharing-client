@@ -56,7 +56,7 @@ class RecipeShow extends Component {
                 return (
                     <div className="render-show">
                         <span>
-                            <img src={image} alt={image} />
+                            {/* <img src={image} alt={image} /> */}
                             <h3>
                                 Name: {name}
                             </h3>

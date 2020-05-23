@@ -8,8 +8,7 @@ class Login extends Component {
         super(props)
         this.state = {
             email: '',
-            password: '',
-            errors: ''
+            password: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,10 +26,8 @@ class Login extends Component {
         e.preventDefault()
         this.props.loginUser(this.state)
         this.setState({
-            username: '',
             email: '',
-            password: '',
-            errors: ''
+            password: ''
         })
         this.props.history.push("/recipes")
     }

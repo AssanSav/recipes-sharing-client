@@ -23,6 +23,7 @@ function NavBar(props) {
             <br />
             {props.isLoggedIn ? <Link to="/login" onClick={(e) => handleClick(e)}>Logout</Link> : null}
             <br /> 
+            <Link to="/recipes/new">Create New Recipe</Link> <br/>
         </div>
     )
 }

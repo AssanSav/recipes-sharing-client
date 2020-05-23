@@ -12,7 +12,7 @@ export function sessionStatus() {
         })
             .then(resp => resp.json())
             .then(data => {
-                data.logged_in ? dispatch({ type: LOGGED_IN, payload: data }) : dispatch({ type: LOGGED_OUT, payload: data })
+                data.logged_in ? dispatch({ type: LOGGED_IN, payload: { user: data.user.data.attributes, isLoggedIn: data.logged_in} }) : dispatch({ type: LOGGED_OUT, payload: data })
             })
     }
 }

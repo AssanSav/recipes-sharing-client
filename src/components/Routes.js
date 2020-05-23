@@ -5,6 +5,7 @@ import Signup from "./Signup"
 import NavBar from "./NavBar"
 import RecipesContainer from "../containers/RecipesContainer"
 import RecipeShow from "./RecipeShow"
+import AddRecipeInput from "./AddRecipeInput"
 
 
 const Routes = () => {
@@ -21,9 +22,9 @@ const Routes = () => {
                     <Route exact path="/signup">
                         <Signup />
                     </Route>
-                    {/* <Route path="/recipes/new">
+                    <Route path="/recipes/new">
                         <AddRecipeInput />
-                    </Route> */}
+                    </Route>
                     <Route exact path="/recipes/:recipeId" render={(routerProps) =>
                         <RecipeShow {...routerProps}
                         />}>

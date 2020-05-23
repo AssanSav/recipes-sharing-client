@@ -6,30 +6,36 @@ import {
     LOGOUT
 } from "../actions/types"
 import { combineReducers } from 'redux'
-import { FETCH_RECIPES, FETCH_RECIPE_SHOW} from "../actions/types"
+import {
+    FETCH_TO_CREATE_RECIPE,
+    FETCH_RECIPE_SHOW,
+    FETCH_CATEGORIES,
+    FETCH_RECIPES
+} from "../actions/types"
+
+
 
 export function usersReducer(state = {
-    user: {},
-    isLoggedIn: false
+    isLoggedIn: false,
+    user: {}
 }, action) {
-
     const { payload, type } = action
-
     switch (type) {
         case SIGNUP:
             return {
+                ...state,
                 isLoggedIn: true,
                 user: payload
             }
         case LOGIN:
             return {
-                isLoggedIn: payload.logged_in,
+                isLoggedIn: true,
                 user: payload
             }
         case LOGGED_IN:
             return {
-                isLoggedIn: payload.logged_in,
-                user: payload
+                isLoggedIn: true,
+                user: payload.user
             }
         case LOGGED_OUT:
             return {
@@ -47,11 +53,11 @@ export function usersReducer(state = {
 }
 
 
-export function recipesReducer(state = {
+export const recipesReducer = (state = {
+    recipeIngredients: [],
     recipes: [],
     recipe: {},
-    recipeIngredients: []
-}, action) {
+}, action) => {
     const { type, payload } = action
     switch ((type)) {
         case FETCH_RECIPES:
@@ -63,6 +69,14 @@ export function recipesReducer(state = {
                 recipe: payload.recipe,
                 recipeIngredients: payload.ingredients
             }
+        case FETCH_TO_CREATE_RECIPE:
+            debugger
+            return {
+                ...state,
+                ...state.recipeIngredients,
+                ...state.recipes,
+                // recipe
+            }
         default:
             return state
             
@@ -70,7 +84,23 @@ export function recipesReducer(state = {
 }
 
 
+export function categoriesReducer(state = {
+    categories: []
+}, action) {
+    const {type, payload} = action
+    switch (type) {
+        case FETCH_CATEGORIES:
+            return {
+                categories: payload
+            }
+        default: 
+            return state
+    }
+}
+
+
 export const rootReducer = combineReducers({
     usersReducer, 
-    recipesReducer
+    recipesReducer, 
+    categoriesReducer
 })
