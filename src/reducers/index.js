@@ -7,6 +7,7 @@ import {
 } from "../actions/types"
 import { combineReducers } from 'redux'
 import {
+    FETCH_TO_ADD_INGREDIENT,
     FETCH_TO_CREATE_RECIPE,
     FETCH_RECIPE_SHOW,
     FETCH_CATEGORIES,
@@ -70,12 +71,14 @@ export const recipesReducer = (state = {
                 recipeIngredients: payload.ingredients
             }
         case FETCH_TO_CREATE_RECIPE:
-            debugger
             return {
                 ...state,
-                ...state.recipeIngredients,
-                ...state.recipes,
-                // recipe
+                recipes: state.recipes.concat(payload)
+            }
+        case FETCH_TO_ADD_INGREDIENT:
+            return {
+                ...state,
+                recipeIngredients: state.recipeIngredients.concat(payload)
             }
         default:
             return state
