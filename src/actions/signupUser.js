@@ -14,7 +14,7 @@ export function signupUser(user) {
         })
             .then(resp => resp.json())
             .then(({ user }) => {
-                dispatch({ type: SIGNUP, payload: user.data })
+                dispatch({ type: SIGNUP, payload: user.data.attributes })
             } )
     }
 }

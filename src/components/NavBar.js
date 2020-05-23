@@ -27,8 +27,8 @@ function NavBar(props) {
     )
 }
 
-const mapStateToProps = ({ users }) => {
-    const {isLoggedIn, user} = users
+const mapStateToProps = ({ usersReducer }) => {
+    const { isLoggedIn, user } = usersReducer
     return {
         isLoggedIn: isLoggedIn,
         user: user

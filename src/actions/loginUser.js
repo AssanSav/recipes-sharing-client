@@ -12,8 +12,9 @@ export function loginUser(user) {
             body: JSON.stringify(user)
         })
             .then(resp => resp.json())
-            .then(({user}) => {
-                dispatch({ type: LOGIN, payload: user.data })
+            .then(({ user }) => {
+                debugger
+                dispatch({ type: LOGIN, payload: user.data.attributes })
             })
     
     }

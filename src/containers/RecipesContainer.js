@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { fetchRecipes } from "../actions/fetchRecipes"
-// import RecipesList from "../components/RecipesList"
+import RecipesList from "../components/RecipesList"
 
 
 class RecipesContainers extends Component {
@@ -11,18 +11,24 @@ class RecipesContainers extends Component {
     }
 
     render() {
-        // const { recipes } = this.props
-        return (
-            <div>
-                {/* <RecipesList recipes={recipes} /> */}
-            </div>
-        )
+        if (!this.props.recipes || this.props.recipes === []) {
+            return <div></div>
+        }
+        else {
+            const { recipes } = this.props
+            return (
+                <div>
+                    <RecipesList recipes={recipes} />
+                </div>
+            )
+        }
     }
+     
 }
 
-const mapStateToProps = ({ recipes }) => {
+const mapStateToProps = ({recipesReducer}) => {
     return {
-        // recipes: state.recipesReducer.recipes
+        recipes: recipesReducer.recipes
     }
 }
 

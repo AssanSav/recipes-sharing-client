@@ -5,8 +5,9 @@ export function fetchRecipes() {
     return (dispatch) => {
         return fetch("http://localhost:3001/api/recipes")
             .then(resp => resp.json())
-            .then(({recipes}) => {
-                dispatch({ type: FETCH_RECIPES, payload: recipes.data })
+            .then(({ recipes }) => {
+                const { data } = recipes
+                dispatch({ type: FETCH_RECIPES, payload: data.map(recipe => recipe.attributes) })
             })
     }
 }
