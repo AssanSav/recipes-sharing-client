@@ -4,6 +4,7 @@ import Login from "./Login"
 import Signup from "./Signup"
 import NavBar from "./NavBar"
 import RecipesContainer from "../containers/RecipesContainer"
+import RecipeShow from "./RecipeShow"
 
 
 const Routes = () => {
@@ -22,12 +23,12 @@ const Routes = () => {
                     </Route>
                     {/* <Route path="/recipes/new">
                         <AddRecipeInput />
-                    </Route>
+                    </Route> */}
                     <Route exact path="/recipes/:recipeId" render={(routerProps) =>
                         <RecipeShow {...routerProps}
                         />}>
                     </Route>
-                    <Route exact path="/recipes/:recipeId/edit" render={(routerProps) =>
+                    {/* <Route exact path="/recipes/:recipeId/edit" render={(routerProps) =>
                         <EditRecipeInput {...routerProps}
                         />}>
                     </Route> */}

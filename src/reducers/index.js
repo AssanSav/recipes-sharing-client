@@ -6,7 +6,7 @@ import {
     LOGOUT
 } from "../actions/types"
 import { combineReducers } from 'redux'
-import { FETCH_RECIPES} from "../actions/types"
+import { FETCH_RECIPES, FETCH_RECIPE_SHOW} from "../actions/types"
 
 export function usersReducer(state = {
     user: {},
@@ -48,20 +48,27 @@ export function usersReducer(state = {
 
 
 export function recipesReducer(state = {
-    recipes: []
+    recipes: [],
+    recipe: {},
+    recipeIngredients: []
 }, action) {
     const { type, payload } = action
-    
     switch ((type)) {
         case FETCH_RECIPES:
             return {
                 recipes: payload
+            }
+        case FETCH_RECIPE_SHOW: 
+            return {
+                recipe: payload.recipe,
+                recipeIngredients: payload.ingredients
             }
         default:
             return state
             
     }
 }
+
 
 export const rootReducer = combineReducers({
     usersReducer, 

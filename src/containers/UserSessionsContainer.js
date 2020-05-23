@@ -9,7 +9,7 @@ class UserSessionStatus extends Component {
     }
 
     render() {
-        const {isLoggedIn, user} = this.props
+        const {isLoggedIn} = this.props
         if (isLoggedIn) {   
             return (
                 <div>
