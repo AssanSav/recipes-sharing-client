@@ -14,8 +14,9 @@ export function addRecipe(formData, ownProps) {
         })
             .then(resp => resp.json())
             .then(({recipe}) => {
-                debugger
-                dispatch({ type: FETCH_TO_CREATE_RECIPE, payload: recipe.data.attributes },
+                dispatch({
+                    type: FETCH_TO_CREATE_RECIPE, payload: recipe.data.attributes
+                },
                     ownProps.history.push(`/recipes/${recipe.data.attributes.id}`))
             }
             )

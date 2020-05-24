@@ -8,6 +8,7 @@ import {
 import { combineReducers } from 'redux'
 import {
     FETCH_TO_ADD_INGREDIENT,
+    FETCH_TO_UPDATE_RECIPE,
     FETCH_TO_CREATE_RECIPE,
     FETCH_RECIPE_SHOW,
     FETCH_CATEGORIES,
@@ -60,13 +61,16 @@ export const recipesReducer = (state = {
     recipe: {},
 }, action) => {
     const { type, payload } = action
+    
     switch ((type)) {
         case FETCH_RECIPES:
             return {
+                ...state,
                 recipes: payload
             }
         case FETCH_RECIPE_SHOW: 
             return {
+                ...state,
                 recipe: payload.recipe,
                 recipeIngredients: payload.ingredients
             }
@@ -79,6 +83,12 @@ export const recipesReducer = (state = {
             return {
                 ...state,
                 recipeIngredients: state.recipeIngredients.concat(payload)
+            }
+        case FETCH_TO_UPDATE_RECIPE:
+            return {
+                recipes: state.recipes.map(recipe => {
+                    return payload.id === recipe.id ? payload : recipe
+                })
             }
         default:
             return state
