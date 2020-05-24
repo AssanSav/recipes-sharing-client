@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { fetchRecipeShow } from "../actions/fetchRecipeShow"
 import { addIngredient } from "../actions/addIngredient"
+import {Link} from "react-router-dom"
 
 
 
@@ -47,23 +48,32 @@ class RecipeShow extends Component {
                 return <div></div>
             }
             else {
-                const { name, directions, image, username, category_name } = this.props.recipe
+                const { id, name, directions, image, username, category_name } = this.props.recipe
                 const { ingredients } = this.props
                 const { ingredient_name, amount } = this.state
+                const { user, recipe, isLoggedIn } = this.props
                 return (
                     <div className="render-show">
                         <span>
                             <img src={image} alt={image} />
-                            <h3>
-                                Name: {name}
-                            </h3>
-                            <h3>
-                                Category: {category_name}
-                            </h3>
-                            <p>
-                                {directions}
-                            </p>
-                            {ingredients.map((ing, ind) => <p key={ind += 1}>{ing.name} - {ing.amount}</p>)}
+                            <h3 style={{ color: "antiquewhite" }}>{name}</h3>
+                            <h3 style={{ color: "antiquewhite" }}>{category_name}</h3>
+                            <p style={{color: "antiquewhite"}}>{directions}</p>
+
+                            {user.id === recipe.user_id ? <Link to={`/recipes/${id}/edit`} style={{ color: "yellow" }}>Edit Recipe</Link> : null}
+                            <table>
+                                {ingredients.map((ing) => {
+                                    return <tbody key={ing.id}>
+                                                <tr key={ing.id}> 
+                                                    <th>{ing.name}</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{ing.amount}</td>
+                                                </tr>
+                                            </tbody>
+                                    }
+                                )}
+                            </table>
                             <footer>
                                 <strong>
                                     By: {username}
@@ -71,7 +81,7 @@ class RecipeShow extends Component {
                             </footer>
                         </span>
 
-                        {this.props.isLoggedIn && this.props.user.id === this.props.recipe.user_id ?
+                        {isLoggedIn && user.id === recipe.user_id ?
                             <form onSubmit={(e) => this.handleSubmit(e)}>
                                 <p>
                                     <input
