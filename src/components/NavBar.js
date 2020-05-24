@@ -15,15 +15,14 @@ function NavBar(props) {
 
     return (
         <div className="nav_bar">
-            <Link to="/recipes">HomePage</Link>
-            <br/>
-            <Link to="/login">Log In</Link>
-            <br />
-            <Link to="/signup">Sign Up</Link>
-            <br />
-            {props.isLoggedIn ? <Link to="/login" onClick={(e) => handleClick(e)}>Logout</Link> : null}
-            <br /> 
-            <Link to="/recipes/new">Create New Recipe</Link> <br/>
+            <ul>
+                <li><Link to="/recipes">HomePage</Link></li>
+                <li><Link to="/login">Log In</Link></li>
+                <li><Link to="/signup">Sign Up</Link></li>
+                <li>{props.isLoggedIn ? <Link to="/login" onClick={(e) => handleClick(e)}>Logout</Link> : null}</li>
+                <li><Link to="/recipes/new">Create New Recipe</Link> </li>
+            </ul>
+            
         </div>
     )
 }
