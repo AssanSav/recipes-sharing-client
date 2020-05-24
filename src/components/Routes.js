@@ -29,10 +29,10 @@ const Routes = () => {
                         <RecipeShow {...routerProps}
                         />}>
                     </Route>
-                    {/* <Route exact path="/recipes/:recipeId/edit" render={(routerProps) =>
-                        <EditRecipeInput {...routerProps}
+                    <Route exact path="/recipes/:recipeId/edit" render={(routerProps) =>
+                        <AddRecipeInput {...routerProps}
                         />}>
-                    </Route> */}
+                    </Route>
                     <Route exact path="/recipes">
                         <RecipesContainer />
                     </Route>
