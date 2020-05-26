@@ -11,6 +11,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 30px;
+  color: white;
+  margin-bottom: 2rem;
 }
 
 .App-link {
@@ -56,7 +59,9 @@ input[type=submit]:hover {
   box-sizing: border-box;
 }
 
-div.container {
+
+
+div.recipe-card {
   margin: 7px;
   border: 2px solid #ccc;
   float: left;
@@ -74,6 +79,7 @@ div.container img {
 div.container img:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
+
 
 table {
   background-color: paleturquoise;
@@ -104,6 +110,10 @@ tr:nth-child(even) {
   float: left;
 }
 
+a.logout {
+  float: right
+}
+
 .nav_bar li a {
   display: block;
   color: white;
@@ -123,4 +133,77 @@ img {
   line-height: 18px;
   border-style: none;
   max-width: 60%;
+}
+
+button.edit {
+  font-family: inherit;
+line-height: 1.15;
+margin: 0;
+overflow: visible;
+text-transform: none;
+-webkit-appearance: button;
+background-color: red;
+border: none;
+color: white;
+padding: 8px 10px;
+font-size: 16px;
+cursor: pointer;
+}
+
+button.edit-ingredient {
+  font-family: inherit;
+  float: right;
+  line-height: 1.15;
+  margin: 0;
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.details {
+  font-family: inherit;
+line-height: 1.15;
+margin: 0;
+overflow: visible;
+text-transform: none;
+-webkit-appearance: button;
+background-color: gray;
+border: none;
+color: white;
+padding: 8px 10px;
+font-size: 16px;
+cursor: pointer;
+}
+
+button.delete {
+  font-family: inherit;
+line-height: 1.15;
+margin: 0;
+overflow: visible;
+text-transform: none;
+-webkit-appearance: button;
+background-color: red;
+border: none;
+color: white;
+padding: 8px 10px;
+font-size: 16px;
+cursor: pointer;
+}
+
+h3 {
+  color: antiquewhite
+}
+
+p {
+  color: antiquewhite;
+}
+
+strong {
+  color: antiquewhite;
 }
