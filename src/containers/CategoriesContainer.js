@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { fetchCategories } from "../actions/fetchCategories"
-// import CategoriesList from "../components/CategoriesList"
-
 
 class CategoriesContainer extends Component {
 
@@ -13,6 +11,7 @@ class CategoriesContainer extends Component {
     render() {
         return (
             <div>
+               
             </div>
         )  
     }

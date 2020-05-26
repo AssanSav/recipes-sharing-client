@@ -17,12 +17,11 @@ function NavBar(props) {
         <div className="nav_bar">
             <ul>
                 <li><Link to="/recipes">HomePage</Link></li>
-                <li><Link to="/login">Log In</Link></li>
-                <li><Link to="/signup">Sign Up</Link></li>
-                <li>{props.isLoggedIn ? <Link to="/login" onClick={(e) => handleClick(e)}>Logout</Link> : null}</li>
-                <li><Link to="/recipes/new">Create New Recipe</Link> </li>
+                {props.isLoggedIn ? null : <li><Link to="/login">Log In</Link></li>}
+                {props.isLoggedIn ? null : <li><Link to="/signup">Sign Up</Link></li>}
+                {props.isLoggedIn ? <li><Link to="/login" onClick={(e) => handleClick(e)} className="logout">Logout</Link></li> : null}
+                {props.isLoggedIn ? <li><Link to="/recipes/new">Create New Recipe</Link></li>  : null}
             </ul>
-            
         </div>
     )
 }

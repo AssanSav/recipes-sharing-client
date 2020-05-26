@@ -3,7 +3,7 @@ import { FETCH_TO_CREATE_RECIPE } from "./types"
 
 export function addRecipe(formData, ownProps) {
     return (dispatch, getState) => {
-        fetch("http://localhost:3001/api/recipes", {
+        return fetch("http://localhost:3001/api/recipes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

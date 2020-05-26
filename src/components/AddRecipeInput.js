@@ -9,7 +9,6 @@ import { withRouter } from 'react-router-dom';
 class AddRecipeInput extends Component {
     constructor(props) {
         super(props)
-
         const {recipe} = props
         this.state = {
             id: recipe ? recipe.id : null,
@@ -88,17 +87,17 @@ class AddRecipeInput extends Component {
                         >
                         </textarea>
                     </p>
-                    {this.props.match.params.recipeId ? <input type="submit" value="Edit" ></input>: <input type="submit" value="Create" ></input>}
+                    {this.props.match.params.recipeId ? <input type="submit" value="Edit" /> : <input type="submit" value="Create" />}
                 </form>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ categoriesReducer, recipesReducer }, ownProps) => {
-    if (ownProps.match.params.recipeId) {
+const mapStateToProps = ({ categoriesReducer, recipesReducer}, {match}) => {
+    if (match.params.recipeId) {
         return {
-            recipe: recipesReducer.recipes.find(r => r.id == ownProps.match.params.recipeId) || recipesReducer.recipe,
+            recipe: recipesReducer.recipes.find(r => r.id == match.params.recipeId),
             categories: categoriesReducer.categories,
         }
     }

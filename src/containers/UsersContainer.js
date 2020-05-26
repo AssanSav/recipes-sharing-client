@@ -9,18 +9,12 @@ class UserSessionStatus extends Component {
     }
 
     render() {
-        // const {isLoggedIn, user} = this.props
-        // if (isLoggedIn) {   
-            return (
-                <div>
-                    {/* <RecipeShow user={user}/> */}
-                </div>
-            )
-        }
-    //     else {
-    //         return <div></div>
-    //     }
-    // }
+        return (
+            <div>
+            </div>
+        )
+    }
+
 }
 
 const mapStateToProps = ({ usersReducer }) => {

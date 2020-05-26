@@ -40,7 +40,6 @@ class Login extends Component {
                 <h1>Log In</h1>
 
                 <form onSubmit={this.handleSubmit}>
-
                     <p>
                         <input
                             placeholder="email"
@@ -60,9 +59,7 @@ class Login extends Component {
                         />
                     </p>
                     <input type="submit" value="Log In" />
-
                 </form>
-
             </div>
         )
     }

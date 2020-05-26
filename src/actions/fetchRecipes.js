@@ -1,4 +1,4 @@
-import { FETCH_RECIPES } from "./types"
+import { FETCH_RECIPES_PLUS_INGREDIENTS } from "./types"
 
 
 export function fetchRecipes() {
@@ -7,7 +7,7 @@ export function fetchRecipes() {
             .then(resp => resp.json())
             .then(({ recipes }) => {
                 const { data } = recipes
-                dispatch({ type: FETCH_RECIPES, payload: data.map(recipe => recipe.attributes) })
+                dispatch({ type: FETCH_RECIPES_PLUS_INGREDIENTS, payload: data.map(recipe => recipe.attributes) })
             })
     }
 }

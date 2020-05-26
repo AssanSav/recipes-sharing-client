@@ -7,12 +7,20 @@ import { Link } from "react-router-dom"
 const RecipeCard = (props) => {
     const {id, name, image, category_name } = props.recipe
     return (
-        <div className="container">
+        <div className="recipe-card">
             <img src={image} alt={image} />
-            <h3 style={{ color: "antiquewhite" }}>{name}</h3>
-            <h3 style={{ color: "antiquewhite" }}>{category_name}</h3>
+            <h3 >
+                {name}
+            </h3>
+            <h3>
+                CATEGORY: {category_name}
+            </h3>
 
-            <Link to={`/recipes/${id}`} style={{ color: "antiquewhite" }}> Recipe Details</Link>
+            <Link to={`/recipes/${id}`}>
+                <button className="details">
+                    Recipe Details
+                </button>
+            </Link>
         </div>
     )
 }

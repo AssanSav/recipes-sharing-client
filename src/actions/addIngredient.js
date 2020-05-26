@@ -3,7 +3,6 @@ import { FETCH_TO_ADD_INGREDIENT } from "./types"
 
 
 export function addIngredient(formData) {
-
     return (dispatch) => {
         return fetch(`http://localhost:3001/api/recipes/${formData.recipe_id}/recipe_ingredients`, {
             method: "POST",

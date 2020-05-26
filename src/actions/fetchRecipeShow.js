@@ -1,4 +1,4 @@
-import { FETCH_RECIPE_SHOW } from "./types"
+import { FETCH_RECIPE_SHOW_PLUS_INGREDIENTS } from "./types"
 
 
 
@@ -14,7 +14,7 @@ export function fetchRecipeShow(recipeId) {
             .then(resp => resp.json())
             .then(data => {
                 dispatch({
-                    type: FETCH_RECIPE_SHOW, payload: {
+                    type: FETCH_RECIPE_SHOW_PLUS_INGREDIENTS, payload: {
                         recipe: data.recipe.data.attributes,
                         ingredients: data.ingredients
                     }
