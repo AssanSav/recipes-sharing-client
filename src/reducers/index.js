@@ -7,14 +7,15 @@ import {
 } from "../actions/types"
 import { combineReducers } from 'redux'
 import {
+    FETCH_RECIPE_SHOW_PLUS_INGREDIENTS,
+    FETCH_TO_UPDATE_INGREDIENT,
     FETCH_TO_ADD_INGREDIENT,
     FETCH_TO_UPDATE_RECIPE,
     FETCH_TO_CREATE_RECIPE,
-    FETCH_RECIPE_SHOW,
+    FETCH_TO_DELETE_RECIPE,
     FETCH_CATEGORIES,
-    FETCH_RECIPES
+    FETCH_RECIPES_PLUS_INGREDIENTS
 } from "../actions/types"
-
 
 
 export function usersReducer(state = {
@@ -56,33 +57,25 @@ export function usersReducer(state = {
 
 
 export const recipesReducer = (state = {
-    recipeIngredients: [],
     recipes: [],
     recipe: {},
 }, action) => {
     const { type, payload } = action
     
     switch ((type)) {
-        case FETCH_RECIPES:
+        case FETCH_RECIPES_PLUS_INGREDIENTS:
             return {
-                ...state,
                 recipes: payload
             }
-        case FETCH_RECIPE_SHOW: 
+        case FETCH_RECIPE_SHOW_PLUS_INGREDIENTS: 
             return {
                 ...state,
-                recipe: payload.recipe,
-                recipeIngredients: payload.ingredients
+                recipe: payload.recipe
             }
         case FETCH_TO_CREATE_RECIPE:
             return {
                 ...state,
                 recipes: state.recipes.concat(payload)
-            }
-        case FETCH_TO_ADD_INGREDIENT:
-            return {
-                ...state,
-                recipeIngredients: state.recipeIngredients.concat(payload)
             }
         case FETCH_TO_UPDATE_RECIPE:
             return {
@@ -90,9 +83,46 @@ export const recipesReducer = (state = {
                     return payload.id === recipe.id ? payload : recipe
                 })
             }
+        case FETCH_TO_DELETE_RECIPE:
+            return {
+                ...state,
+                recipes: state.recipes.filter(recipe => recipe.id !== payload.id)
+            }
         default:
             return state
             
+    }
+}
+
+
+export function ingredientsReducer(state = {
+    allIngredients: [],
+    ingredients: []
+}, action) {
+    const {type, payload} = action
+    switch (type) {
+        case FETCH_RECIPES_PLUS_INGREDIENTS: 
+            return {
+                allIngredients: payload.map(recipe => recipe.ingredients)
+            }
+        case FETCH_RECIPE_SHOW_PLUS_INGREDIENTS:
+            return {
+                ingredients: payload.ingredients
+            }
+        case FETCH_TO_ADD_INGREDIENT:
+            return {
+                ...state,
+                ingredients: state.ingredients.concat(payload)
+            }
+        case FETCH_TO_UPDATE_INGREDIENT: 
+            debugger
+            return {
+                ingredients: state.ingredients.map(ingredient => {
+                    return payload.id === ingredient.id ? payload : ingredient
+                })
+            }
+        default: 
+            return state
     }
 }
 
@@ -115,5 +145,6 @@ export function categoriesReducer(state = {
 export const rootReducer = combineReducers({
     usersReducer, 
     recipesReducer, 
+    ingredientsReducer,
     categoriesReducer
 })
