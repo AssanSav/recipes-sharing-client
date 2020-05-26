@@ -27,6 +27,9 @@ class Signup extends Component {
     handleSubmit(e) {
         e.preventDefault()
         this.props.signupUser(this.state)
+            .then(() => {
+                this.props.history.push("/recipes")
+        })
         this.setState({
             username: '',
             email: '',
