@@ -1,22 +1,37 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import { removeIngredient} from "../actions/removeIngredient"
 
 
-const IngredientCard = ({ recipe, ingredient }) => {
+
+const IngredientCard = ({ recipe, ingredient, isloggedIn, user, removeIngredient }) => {
+
+    const handleDelete = () => {
+        removeIngredient(ingredient, recipe)
+    }
+
+
     return (
-        <div>
+        <div className="ingredient-card">
             <table>
                 <tbody>
                     <tr>
                         <th>
                             {ingredient.name}
-                
-                            <Link to={`/recipes/${recipe.id}/ingredients/${ingredient.id}`}>
-                                <button className="edit-ingredient">
-                                    Edit Ingredient
+                            {isloggedIn && user.id === recipe.user_id ?
+                                <>
+                                <button onClick={handleDelete} className="edit-ingredient">
+                                    Delete
                                 </button>
-                            </Link>
-                            
+                                
+                                <Link to={`/recipes/${recipe.id}/ingredients/${ingredient.id}`}>
+                                    <button className="edit-ingredient">
+                                        Edit
+                                </button>
+                                    </Link> 
+                                </>
+                                : null}
                         </th>
                     </tr>
                     <tr>
@@ -28,4 +43,5 @@ const IngredientCard = ({ recipe, ingredient }) => {
     )
 }
 
-export default IngredientCard
+
+export default connect(null, {removeIngredient})(IngredientCard)
