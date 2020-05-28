@@ -16,22 +16,39 @@ function NavBar(props) {
     return (
         <div className="nav_bar">
             <ul>
-                <li><Link to="/recipes">HomePage</Link></li>
-                {props.isLoggedIn ? null : <li><Link to="/login">Log In</Link></li>}
-                {props.isLoggedIn ? null : <li><Link to="/signup">Sign Up</Link></li>}
-                {props.isLoggedIn ? <li><Link to="/login" onClick={(e) => handleClick(e)} className="logout">Logout</Link></li> : null}
-                {props.isLoggedIn ? <li><Link to="/recipes/new">Create New Recipe</Link></li>  : null}
+                <li>
+                    <Link to="/recipes">
+                        HomePage
+                    </Link>
+                </li>
+                {props.isLoggedIn ? null :
+                <li>
+                    <Link to="/login">
+                        Log In
+                    </Link>
+                </li>}
+                {props.isLoggedIn ? null :
+                    <li>
+                        <Link to="/signup">
+                            Sign Up
+                        </Link>
+                    </li>}
+                {props.isLoggedIn ?
+                    <li>
+                        <Link to="/login" onClick={(e) => handleClick(e)} className="logout">
+                            Logout
+                        </Link>
+                    </li> : null}
+                {props.isLoggedIn ?
+                    <li>
+                        <Link to="/recipes/new">
+                            Create New Recipe
+                            </Link>
+                    </li> : null}
             </ul>
         </div>
     )
 }
 
-const mapStateToProps = ({ usersReducer }) => {
-    const { isLoggedIn, user } = usersReducer
-    return {
-        isLoggedIn: isLoggedIn,
-        user: user
-    }
-}
 
-export default connect(mapStateToProps, { logoutUser })(NavBar)
+export default connect(null, { logoutUser })(NavBar)
