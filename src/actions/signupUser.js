@@ -1,5 +1,7 @@
 import { SIGNUP } from "./types"
 
+
+
 export function signupUser(user) {
     return (dispatch) => {
         return fetch("http://localhost:3001/api/users", {

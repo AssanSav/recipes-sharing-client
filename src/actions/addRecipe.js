@@ -1,8 +1,9 @@
 import { FETCH_TO_CREATE_RECIPE } from "./types"
 
 
+
 export function addRecipe(formData, ownProps) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         return fetch("http://localhost:3001/api/recipes", {
             method: "POST",
             headers: {
@@ -17,7 +18,8 @@ export function addRecipe(formData, ownProps) {
                 dispatch({
                     type: FETCH_TO_CREATE_RECIPE, payload: recipe.data.attributes
                 },
-                    ownProps.history.push(`/recipes/${recipe.data.attributes.id}`))
+                    ownProps.history.push(`/recipes/${recipe.data.attributes.id}`)
+                )
             }
             )
             .catch(err => ownProps.history.push("/recipes/new"))

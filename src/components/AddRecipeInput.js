@@ -6,6 +6,7 @@ import { editRecipe } from "../actions/editRecipe"
 import { withRouter } from 'react-router-dom';
 
 
+
 class AddRecipeInput extends Component {
     constructor(props) {
         super(props)
@@ -46,10 +47,10 @@ class AddRecipeInput extends Component {
             directions: "",
             image: "",
             category_id: ""
-        })
+            })
         }
-        
     }
+
 
     render() {
         const { name, directions, image, category_id } = this.state
@@ -94,10 +95,11 @@ class AddRecipeInput extends Component {
     }
 }
 
+
 const mapStateToProps = ({ categoriesReducer, recipesReducer}, {match}) => {
     if (match.params.recipeId) {
         return {
-            recipe: recipesReducer.recipes.find(r => r.id == match.params.recipeId),
+            recipe: recipesReducer.recipes.find(r => r.id.toString() === match.params.recipeId),
             categories: categoriesReducer.categories,
         }
     }
@@ -109,6 +111,7 @@ const mapStateToProps = ({ categoriesReducer, recipesReducer}, {match}) => {
     }
    
 }
+
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {

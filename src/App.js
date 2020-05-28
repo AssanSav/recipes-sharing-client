@@ -2,16 +2,18 @@ import React from 'react';
 import './styleSheet/App.css';
 import UsersContainer from "./containers/UsersContainer"
 import Routes from './components/Routes';
-import CategoriesContainer from "./containers/CategoriesContainer"
+import { BrowserRouter as Router  } from "react-router-dom"
 
 
 function App() {
   return (
-    <div className="App">
-      <UsersContainer />
-      <CategoriesContainer />
-      <Routes />
-    </div>
+    <Router>
+      <div className="App">
+        <UsersContainer />
+        <Routes />
+      </div>
+    </Router>
+    
   );
 }
 

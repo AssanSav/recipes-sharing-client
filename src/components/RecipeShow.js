@@ -6,6 +6,8 @@ import { addIngredient } from "../actions/addIngredient"
 import { removeRecipe } from "../actions/removeRecipe"
 import IngredientCard from "./IngredientCard"
 
+
+
 class RecipeShow extends Component {
     constructor() {
         super()
@@ -23,6 +25,7 @@ class RecipeShow extends Component {
     componentDidMount() {
         this.props.fetchRecipeShow(this.props.match.params.recipeId)
     }
+
 
     handleChange(e) {
         this.setState({
@@ -42,12 +45,14 @@ class RecipeShow extends Component {
         })
     }
 
+
     handleDelete() {
         this.props.removeRecipe(this.props.recipe)
         .then(() => {
             this.props.history.push("/recipes")
         })
     }
+
 
     render() {
         if (!this.props.recipe || this.props.ingredients === []) {
@@ -71,14 +76,22 @@ class RecipeShow extends Component {
                     </p>
 
                     {user.id === recipe.user_id ?
-                        <Link to={`/recipes/${id}/edit`}>
-                            <button className="edit">
-                                Edit Recipe 
-                            </button>
-                        </Link> : null}
+                        <div>
+                            <Link to={`/recipes/${id}`} >
+                                <button className="delete" onClick={this.handleDelete}>
+                                    Delete
+                                </button>
+                            </Link> 
+                            <br/>
+                            <Link to={`/recipes/${id}/edit`}>
+                                <button className="edit">
+                                    Edit Recipe 
+                                </button>
+                            </Link>
+                        </div> : null}
                     
                     {this.props.ingredients.map((ingredient) => 
-                        <IngredientCard ingredient={ingredient} recipe={recipe} />
+                        <IngredientCard key={ingredient.id} ingredient={ingredient} recipe={recipe} isloggedIn={isLoggedIn} user={user} />
                     )}
 
                     {isLoggedIn && user.id === recipe.user_id ?
@@ -102,12 +115,6 @@ class RecipeShow extends Component {
                                 />
                             </p>
                             <input type="submit" value="Add Ingredient" ></input>
-                            <br/>
-                            <Link to={`/recipes/${id}`} >
-                                <button className="delete" onClick={this.handleDelete}>
-                                    Delete
-                                </button>
-                            </Link>
                         </form>
                         : null}
                     <br/>
@@ -122,6 +129,7 @@ class RecipeShow extends Component {
     }
 }
 
+
 const mapStateToProps = ({ recipesReducer, usersReducer, ingredientsReducer }) => {
     return {
         ingredients: ingredientsReducer.ingredients,
@@ -130,5 +138,6 @@ const mapStateToProps = ({ recipesReducer, usersReducer, ingredientsReducer }) =
         user: usersReducer.user
     }
 }
+
 
 export default connect(mapStateToProps, { fetchRecipeShow, addIngredient, removeRecipe })(RecipeShow)

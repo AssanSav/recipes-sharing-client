@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { editIngredient } from "../actions/editIngredient"
 
+
+
 class EditIngredient extends Component {
     constructor(props) {
         super(props)
@@ -15,6 +17,7 @@ class EditIngredient extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
+
 
     handleChange(e) {
         this.setState({
@@ -68,9 +71,12 @@ class EditIngredient extends Component {
     }
 }
 
+
 const mapStateToProps = ({ ingredientsReducer }, ownProps) => {
     return {
-        ingredient: ingredientsReducer.ingredients.find(ingredient => ingredient.id == ownProps.match.params.id)
+        ingredient: ingredientsReducer.ingredients.find(ingredient => ingredient.id.toString() === ownProps.match.params.id)
     }
 }
+
+
 export default connect(mapStateToProps, {editIngredient})(EditIngredient)

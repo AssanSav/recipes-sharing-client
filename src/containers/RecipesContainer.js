@@ -10,6 +10,7 @@ class RecipesContainers extends Component {
         this.props.fetchRecipes()
     }
 
+
     render() {
         if (!this.props.recipes || this.props.recipes === []) {
             return <div></div>
@@ -22,9 +23,9 @@ class RecipesContainers extends Component {
                 </div>
             )
         }
-    }
-     
+    }   
 }
+
 
 const mapStateToProps = ({recipesReducer}) => {
     return {

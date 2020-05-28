@@ -1,6 +1,7 @@
 import { FETCH_CATEGORIES } from "./types"
 
 
+
 export function fetchCategories() {
     return (dispatch) => {
         return fetch("http://localhost:3001/api/categories")
