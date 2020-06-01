@@ -21,7 +21,6 @@ class RecipeShow extends Component {
         this.handleDelete = this.handleDelete.bind(this)
     };
 
-
     componentDidMount() {
         this.props.fetchRecipeShow(this.props.match.params.recipeId)
     }

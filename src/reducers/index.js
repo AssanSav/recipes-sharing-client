@@ -10,9 +10,7 @@ import {
     FETCH_TO_UPDATE_RECIPE,
     FETCH_TO_CREATE_RECIPE,
     FETCH_TO_DELETE_RECIPE,
-    FETCH_CATEGORIES,
-    SEARCH, SEARCH_BY_INGREDIENTS
-} from "../actions/types"
+    FETCH_CATEGORIES, } from "../actions/types"
 
 
 export function usersReducer(state = { isLoggedIn: false, user: {} }, action) {
@@ -57,7 +55,7 @@ export function usersReducer(state = { isLoggedIn: false, user: {} }, action) {
 }
 
 
-export const recipesReducer = (state = {recipes: [], recipe: {}, }, action) => {
+export const recipesReducer = (state = {recipes: [], recipe: {} }, action) => {
     const { type, payload } = action
     
     switch ((type)) {
@@ -92,19 +90,6 @@ export const recipesReducer = (state = {recipes: [], recipe: {}, }, action) => {
                 recipes: state.recipes.filter(recipe => recipe.id !== payload.id)
             }
         
-        case SEARCH_BY_INGREDIENTS:
-            return {
-                ...state,
-                recipes: state.recipes.map(recipe => {
-                    return recipe.ingredients.filter(ingredient => ingredient.name.includes(payload.charAt(0).toUpperCase()))
-                    // debugger
-                })
-            }
-        case SEARCH:
-            return {
-                ...state,
-                recipes: state.recipes.filter(recipe => recipe.category_name.includes(payload.charAt(0).toUpperCase()))
-            }
         default:
             return state
             
