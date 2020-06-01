@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { editIngredient } from "../actions/editIngredient"
+import { fetchRecipeShow } from "../actions/fetchRecipeShow"
 
 
 
@@ -9,13 +10,30 @@ class EditIngredient extends Component {
         super(props)
 
         this.state = {
-            id: props.ingredient ? props.ingredient.id : "",
+            id: props.ingredient ? props.ingredient.id : props.match.params.id,
             ingredient_name: props.ingredient ? props.ingredient.name : "",
             amount: props.ingredient ? props.ingredient.amount : "",
             recipe_id: props.match.params.recipeId
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            id: nextProps.ingredient.id,
+            ingredient_name: nextProps.ingredient.name,
+            amount: nextProps.ingredient.amount,
+            recipe_id: this.props.match.params.recipeId
+        })
+    }
+
+
+    componentDidMount() {
+        if (this.props.match.params) {
+            this.props.fetchRecipeShow(this.props.match.params.recipeId)
+        }
     }
 
 
@@ -72,11 +90,11 @@ class EditIngredient extends Component {
 }
 
 
-const mapStateToProps = ({ ingredientsReducer }, ownProps) => {
+const mapStateToProps = ({ ingredientsReducer }, { match }) => {
     return {
-        ingredient: ingredientsReducer.ingredients.find(ingredient => ingredient.id.toString() === ownProps.match.params.id)
+        ingredient: ingredientsReducer.ingredients.find(ingredient => ingredient.id.toString() === match.params.id)
     }
 }
 
 
-export default connect(mapStateToProps, {editIngredient})(EditIngredient)
+export default connect(mapStateToProps, { editIngredient, fetchRecipeShow })(EditIngredient)
