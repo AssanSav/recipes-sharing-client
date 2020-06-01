@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { addRecipe } from "../actions/addRecipe"
 import { fetchCategories } from "../actions/fetchCategories"
+import { fetchRecipeShow } from "../actions/fetchRecipeShow"
 import { editRecipe } from "../actions/editRecipe"
 import { withRouter } from 'react-router-dom';
 
@@ -13,8 +14,8 @@ class AddRecipeInput extends Component {
         const {recipe} = props
         this.state = {
             id: recipe ? recipe.id : null,
-            name: props.recipe ? recipe.name : "",
-            directions: props.recipe ? recipe.directions :"",
+            name: recipe ? recipe.name : "",
+            directions: recipe ? recipe.directions :"",
             image: recipe ? recipe.image :"",
             category_id: recipe ? recipe.category_id :""
         }
@@ -23,10 +24,37 @@ class AddRecipeInput extends Component {
     }
 
 
-    componentDidMount() {
-        this.props.fetchCategories()
+    componentWillReceiveProps(nextProps) {
+        if (this.props.recipe && nextProps.recipe) {
+            this.setState({
+                id: nextProps.recipe.id,
+                name: nextProps.recipe.name,
+                directions: nextProps.recipe.directions,
+                image: nextProps.recipe.image,
+                category_id: nextProps.recipe.category_id
+            })
+        } 
+        else {
+            this.setState({
+                name: "",
+                directions: "",
+                image: "",
+                category_id: ""
+            })
+        }
     }
 
+
+    componentDidMount() {
+        if (this.props.match.params.recipeId) {
+            this.props.fetchRecipeShow(this.props.match.params.recipeId)
+            this.props.fetchCategories()
+        }
+        else {
+           this.props.fetchCategories() 
+        }  
+    }
+    
 
     handleChange(e) {
         this.setState({
@@ -96,10 +124,10 @@ class AddRecipeInput extends Component {
 }
 
 
-const mapStateToProps = ({ categoriesReducer, recipesReducer}, {match}) => {
-    if (match.params.recipeId) {
+const mapStateToProps = ({ categoriesReducer, recipesReducer }, { match }) => {
+    if (match.params.recipeId && recipesReducer.recipe) {
         return {
-            recipe: recipesReducer.recipes.find(r => r.id.toString() === match.params.recipeId),
+            recipe: recipesReducer.recipe,
             categories: categoriesReducer.categories,
         }
     }
@@ -116,8 +144,9 @@ const mapStateToProps = ({ categoriesReducer, recipesReducer}, {match}) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         addRecipe: (formData) => dispatch(addRecipe(formData, ownProps)),
-        fetchCategories: () => dispatch(fetchCategories()),
         editRecipe: (formData) => dispatch(editRecipe(formData, ownProps)),
+        fetchCategories: () => dispatch(fetchCategories()),
+        fetchRecipeShow: (id) => dispatch(fetchRecipeShow(id))
     }
 }
 
