@@ -22,7 +22,7 @@ const IngredientCard = ({ recipe, ingredient, isloggedIn, user, removeIngredient
                             {isloggedIn && user.id === recipe.user_id ?
                                 <>
                                 <button onClick={handleDelete} className="edit-ingredient">
-                                    Delete
+                                        Delete
                                 </button>
                                 
                                 <Link to={`/recipes/${recipe.id}/ingredients/${ingredient.id}`}>

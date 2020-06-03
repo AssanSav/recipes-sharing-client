@@ -21,7 +21,7 @@ const Routes = () => {
                     <Signup {...routerProps}
                     />}>
                 </Route>
-                <Route exact path="/recipes">
+                <Route exact path="/">
                     <RecipesContainer />
                 </Route>
                 <Route path="/recipes/new">

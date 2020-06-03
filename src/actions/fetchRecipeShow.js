@@ -4,7 +4,7 @@ import { FETCH_RECIPE_SHOW_PLUS_INGREDIENTS } from "./types"
 
 export function fetchRecipeShow(recipeId) {
     return dispatch => {
-        return fetch(`http://localhost:3001/api/recipes/${recipeId}`, {
+        fetch(`http://localhost:3001/api/recipes/${recipeId}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"

@@ -13,7 +13,7 @@ import {
     FETCH_CATEGORIES, } from "../actions/types"
 
 
-export function usersReducer(state = { isLoggedIn: false, user: {} }, action) {
+export const usersReducer = (state = { isLoggedIn: false, user: {} }, action) => {
     const { payload, type } = action
 
     switch (type) {
@@ -97,7 +97,7 @@ export const recipesReducer = (state = {recipes: [], recipe: {} }, action) => {
 }
 
 
-export function ingredientsReducer(state = { allIngredients: [], ingredients: [] }, action) {
+export const ingredientsReducer = (state = { allIngredients: [], ingredients: [] }, action) => {
     const { type, payload } = action
     
     switch (type) {
@@ -137,7 +137,7 @@ export function ingredientsReducer(state = { allIngredients: [], ingredients: []
 }
 
 
-export function categoriesReducer(state = { categories: [] }, action) {
+export const categoriesReducer = (state = { categories: [] }, action) => {
     const { type, payload } = action
     
     switch (type) {

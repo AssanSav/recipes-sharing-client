@@ -33,7 +33,7 @@ class RecipesList extends Component {
     render() {
         const { recipes } = this.props
         return (
-            <div>
+            <>
                 <form onSubmit={this.handleSubmit}>
                     <p>
                         <input
@@ -48,7 +48,7 @@ class RecipesList extends Component {
                     
                 </form>
                 {this.state.recipes.length > 0 ? this.state.recipes.map(recipe => <div key={recipe.id}><RecipeCard recipe={recipe} /></div>) : recipes.map(recipe => <div key={recipe.id}><RecipeCard recipe={recipe}/></div>)}
-            </div>
+            </>
         )
     }
 } 

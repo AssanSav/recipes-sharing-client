@@ -90,7 +90,7 @@ class RecipeShow extends Component {
                         </div> : null}
                     
                     {this.props.ingredients.map((ingredient) => 
-                        <IngredientCard key={ingredient.id} ingredient={ingredient} recipe={recipe} isloggedIn={isLoggedIn} user={user} />
+                        <IngredientCard key={ingredient.id}  ingredient={ingredient} recipe={recipe} isloggedIn={isLoggedIn} user={user}/>
                     )}
 
                     {isLoggedIn && user.id === recipe.user_id ?

@@ -100,8 +100,9 @@ class AddRecipeInput extends Component {
                     <p>
                         <input
                             placeholder="Image"
-                            type="text"
+                            type="file"
                             name="image"
+                            accept=".jpg, .jpeg, .png"
                             value={image}
                             onChange={this.handleChange}
                         />

@@ -4,7 +4,7 @@ import { logoutUser } from "../actions/logoutUser"
 import { connect } from "react-redux"
 
 
-function NavBar(props) {
+const NavBar = (props) => {
 
     const handleClick = () => {
         const { logoutUser, isLoggedIn, user } = props
@@ -17,7 +17,7 @@ function NavBar(props) {
         <div className="nav_bar">
             <ul>
                 <li>
-                    <Link to="/recipes">
+                    <Link to="/">
                         HomePage
                     </Link>
                 </li>
@@ -43,7 +43,7 @@ function NavBar(props) {
                     <li>
                         <Link to="/recipes/new">
                             Create New Recipe
-                            </Link>
+                        </Link>
                     </li> : null}
             </ul>
         </div>
