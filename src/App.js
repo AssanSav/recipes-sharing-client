@@ -1,9 +1,8 @@
-import React from 'react';
-import './styleSheet/App.css';
-import UsersContainer from "./containers/UsersContainer"
-import Routes from './components/Routes';
-import { BrowserRouter as Router  } from "react-router-dom"
-
+import React from "react";
+import "./styleSheet/App.css";
+import UsersContainer from "./containers/UsersContainer";
+import Routes from "./components/Routes";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
         <Routes />
       </div>
     </Router>
-    
   );
 }
 
