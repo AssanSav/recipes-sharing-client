@@ -1,8 +1,9 @@
+## README
+This APP uses the `fetch` method to fetch an API from a `rails` back-end APP, it allows users to signup and then create food recipes to be shared among other users. Only an authenticated user can have the privilege to create edit and delete a record they have created themselves 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
-
-In the project directory, you can run:
 
 ### `yarn start`
 
