@@ -1,22 +1,34 @@
-import { LOGIN } from "./types"
+import { LOGIN, FAILED_LOGIN } from "./types";
 
-
-
-export function loginUser(user) {
-    return dispatch => {
-        return fetch("http://localhost:3001/api/login", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            credentials: "include",
-            body: JSON.stringify(user)
-        })
-            .then(resp => resp.json())
-            .then(({ user }) => {
-                dispatch({ type: LOGIN, payload: user.data.attributes })
-            })
-    
-    }
+export function loginUser(user, ownProps) {
+  return (dispatch) => {
+    return fetch("http://localhost:3001/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(user),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        data.status !== 500
+          ? dispatch(
+              {
+                type: LOGIN,
+                payload: data.user.data.attributes,
+              },
+              ownProps.history.push("/")
+            )
+          : dispatch(
+              {
+                type: FAILED_LOGIN,
+                emailEr: data.email_error,
+                passwordEr: data.passwordError,
+              },
+              ownProps.history.push("/login")
+            );
+      });
+  };
 }
